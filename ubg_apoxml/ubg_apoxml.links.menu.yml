@@ -1,0 +1,6 @@
+ubg_apoxml.apo_xml_settings:
+  title: 'ApoXML Einstellungen'
+  route_name: ubg_apoxml.apo_xml_settings
+  description: 'UBG Apogee/ApoXML Einstellungen'
+  parent: system.admin_config_system
+  weight: 99

@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * @file
+ * Contains ubg_apoxml.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\ubg_apoxml\Apogee\ApogeeHandler;
+use Drupal\ubg_apoxml\Apogee\ApoXML;
+use Drupal\ubg_apoxml\Apogee\XmlHandler;
+
+/**
+ * Implements hook_help().
+ */
+function ubg_apoxml_help($route_name, RouteMatchInterface $route_match)
+{
+  switch ($route_name) {
+      // Main module help for the ubg_apoxml module.
+    case 'help.page.ubg_apoxml':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Generator der Digitale- Auftragstasche für die UBG-Druckerei') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ubg_apoxml_theme()
+{
+  return [
+    'ubg_apoxml' => [
+      'render element' => 'children',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_commerce_order_update().
+ */
+function ubg_apoxml_commerce_order_update($order)
+{
+  opcache_reset();
+
+  $location = \Drupal::service('file_system')->realpath('temporary://');
+  $apogee = new ApogeeHandler;
+  $apogee->setFileExportLocation($location);
+  $apogee->setOrder($order);
+  $apogee->run();
+}

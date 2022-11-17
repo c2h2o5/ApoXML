@@ -1,0 +1,9 @@
+ubg_apoxml.apo_xml_settings:
+  path: '/admin/config/ubg_apoxml/apoxml'
+  defaults:
+    _form: '\Drupal\ubg_apoxml\Form\ApoXML'
+    _title: 'ApoXML'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE

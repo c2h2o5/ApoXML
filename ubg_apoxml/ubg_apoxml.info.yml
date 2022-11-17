@@ -1,0 +1,10 @@
+## @author Krasimir Bachev, UBG
+
+name: 'UBG ApoXML'
+type: module
+description: 'Generiert die Digitale- Auftragstasche einer Bestellung für die UBG-Druckerei'
+core_version_requirement: ^8.8 || ^9
+package: UBG Commerce
+version: 1.0.0
+dependencies:
+  - commerce
